@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="{% static 'forms/sign_up/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    <img src="{% static 'forms/sign_up/images/image.jpg' %}" alt="form_image.jpg" height="937" width="1920">
+    <form autocomplete="off" name="signup_form" method="post">
+        {% csrf_token %}
+        <h1> Signup Form </h1>
+
+        <label> First Name : </label>
+        <div>
+            <input type="text" id="fname" name="first_name" placeholder="Enter First Name">
+            <span id="fname-error" class="error-font-style"></span>
+        </div>
+
+        <label> Last Name : </label>
+        <div>
+            <input type="text" id="lname" name="last_name" placeholder="Enter Last Name">
+            <span id="lname-error" class="error-font-style"></span>
+        </div>
+
+        <label> User Name : </label>
+        <div>
+            <input type="text" id="uname" name="username" placeholder="Enter Username">
+            <span id="uname-error" class="error-font-style"></span>
+        </div>
+
+        <label> Email ID : </label>
+        <div>
+            <input type="text" id="email" name="email" placeholder="abc@gmail.com">
+            <span id="email-error" class="error-font-style"></span>
+        </div>
+
+        <label> Password : </label>
+        <div>
+            <input type="password" id="pswd" name="password1" placeholder="Write password here">
+            <span id="pswd-error" class="error-font-style"></span>
+        </div>
+
+        <label> Confirm Password : </label>
+        <div>
+            <input type="password" id="cpswd" name="password2" placeholder="Enter the same password as above">
+            <span id="cpswd-error" class="error-font-style"></span>
+        </div>
+<br>
+        <a href="{% url 'login' %}" class="btn btn-warning">Return</a>
+        <button type="submit" id="submit" class="btn btn-primary"> Submit </button>
+    </form>
+    <!-- <div>
+        {% if messages %}
+            {% for message in messages %}
+                <h3 class="container alert alert-danger text-center" style="width: 700px;"> {{message}} </h3>
+            {% endfor %}
+        {% endif %}
+    </div> -->
+    <script src="{% static 'forms/sign_up/js/script.js' %}"></script>
+</body>
+
+</html>

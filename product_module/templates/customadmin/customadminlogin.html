@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customadmin | Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <form class="form-group" method="post">
+        {% csrf_token %}
+        <h1> Login Form </h1>
+
+        <label> Username : </label>
+        <input type="text" class="form-control" id="uname" name="username" placeholder="Enter username"><br>
+
+        <label> Password : </label>
+        <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password here"><br>
+        <button type="submit" class="btn btn-primary">Log in</button>
+        <br><br><br><br><br>
+    </form>
+</body>
+
+</html>

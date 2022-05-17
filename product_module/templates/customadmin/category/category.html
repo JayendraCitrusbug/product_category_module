@@ -1,0 +1,29 @@
+{% extends 'base_customadmin.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <a href="{% url 'categoryadd' %}" class="btn btn-primary mb-3">Add a new category</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">Sr. No.</th>
+                <th scope="col">ID</th>
+                <th scope="col">Category</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in category %}
+            <tr class="text-center">
+                <td>{{forloop.counter}}</td>
+                <td>{{c.id}}</td>
+                <td>{{c.category}}</td>
+                <td><a href="{% url 'categoryedit' c.pk %}" class="btn btn-warning">edit</a></td>
+                <td><a href="{% url 'categorydelete' c.id %}" class="btn btn-danger">delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

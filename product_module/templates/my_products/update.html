@@ -1,0 +1,68 @@
+{% extends 'base.html' %}]
+
+{% block title %}Update Product {{id}}{% endblock title %}
+
+
+
+{% block content %}
+
+<body style="background-image: url(../../static/main/images/images/images-9.jpg); background-repeat: no-repeat; background-size: cover;">
+
+    <div class="container mt-3">
+        <h2 class="text-center alert alert-info">Update Product Details</h2>
+    </div>
+    <form name="updateform" class="container col-sm-4" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <fieldset disabled>
+            <legend>Username</legend>
+            <div class="mb-4">
+                <input type="text" class="form-control" placeholder={{user.username}}>
+            </div>
+        </fieldset>
+
+        <div class="mb-3">
+            <label class="form-label">Product Name : </label>
+            <input type="text" class="form-control" name="product_name" value="{{products.product_name}}" 
+                placeholder="Enter characters only">
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Category : </label> <a href="{% url 'addcategory' %}">Add</a>
+            <select class="form-select" name="category">
+                {% for c in cat %}
+                    <option value="{{ c.id }}" {% if products.category.category == c.category %} selected {% else %}{% endif %}>{{ c.category }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Image : </label> <a href="/media/{{ products.img }}">{{products.img.url}}</a>
+            <input type="file" class="form-control" name="img" value="{{products.img.url}}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description : </label>
+            <input type="text" class="form-control" name="description" value="{{products.description}}"
+                placeholder="Description of product here">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Price : </label>
+            <input type="text" class="form-control" name="price" value="{{products.price}}"
+                placeholder="Must be in range (1 - 5lakh)">
+        </div>
+
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-success">Update</button>
+            <a href="{% url 'myproducts' %}" class="btn btn-secondary">Back</a>
+        </div>
+        <!-- {{ form.as_p }} -->
+        <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-success">Update</button>
+            <a href="{% url 'myproducts' %}" class="btn btn-secondary">Back</a>
+        </div> -->
+    </form>
+</body>
+{% endblock content %}

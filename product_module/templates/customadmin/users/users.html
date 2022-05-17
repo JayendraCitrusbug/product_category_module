@@ -1,0 +1,41 @@
+{% extends 'base_customadmin.html' %}
+
+{% load static %}
+{% block content %}
+<div class="container">
+    <a href="{% url 'useradd' %}" class="btn btn-primary mb-3">Add a new user</a>
+    <table class="table table-striped">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">Sr. No.</th>
+                <th scope="col">ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email ID</th>
+                <th scope="col">First_Name</th>
+                <th scope="col">Last_Name</th>
+                <th scope="col">is_active</th>
+                <th scope="col">is_staff</th>
+                <th scope="col">is_superuser</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in user %}
+            <tr class="text-center">
+                <td>{{forloop.counter}}</td>
+                <td>{{user.id}}</td>
+                <td><a href="{% url 'useredit' user.pk %}">{{user.username}}</a></td>
+                <td>{{user.email}}</td>
+                <td>{{user.first_name}}</td>
+                <td>{{user.last_name}}</td>
+                <td>{% if user.is_active %}<i class="fas fa-check" style="color: green;"></i>{% else %} {% endif %}</td>
+                <td>{% if user.is_staff %}<i class="fas fa-check" style="color: green;"></i>{% else %}{% endif %}</td>
+                <td>{% if user.is_superuser %}<i class="fas fa-check" style="color: green;">{% else %}{% endif %}</td>
+                <td><a href="{% url 'useredit' user.pk %}" class="btn btn-warning">edit</a> &nbsp;&nbsp;
+                    <a href="{% url 'userdelete' user.id %}" class="btn btn-danger">delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

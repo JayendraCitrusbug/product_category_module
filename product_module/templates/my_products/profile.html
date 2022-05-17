@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} My Profile {% endblock title %}
+
+{% block content %}
+
+    <div class="container mt-3 text-center">
+        <h2 class="alert alert-success">welcome {{ user.username }}!</h2>
+        <h2><b>Email : </b>{{ user.email }}!</h2>
+        <br>
+        
+        <h3 style="text-decoration: underline;">My Products : </h3>
+        {% for p in myprofile %}
+        {{ p.product_name }} <br>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

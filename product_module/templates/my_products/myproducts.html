@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} My Products {% endblock title %}
+
+{% block mycategory %}
+{% for c in cat2 %}
+<li><a class="dropdown-item" href="?category={{c.id}}">{{ c }}</a></li>
+{% endfor %}
+{% endblock mycategory %}
+
+{% block filter %}
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Filter
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {% for c in cat %}
+        <li><a class="dropdown-item j">{{ c }}</a></li>
+        {% endfor %}
+    </ul>
+</li>
+{% endblock filter %}
+
+{% block content %}
+<body style="background-color: aliceblue; background-repeat: no-repeat; background-size: cover;">
+
+    <div class="container mt-5">
+        <div class="mt-5">
+            <h2 class="text-center alert alert-success">My Products</h2>
+            {% if mypro %}
+            <h4 class="text-center alert alert-info">Total Products : {{mypro_counts}}</h4>
+            <table class="table table-striped">
+                <tbody>
+                    {% for p in mypro %}
+                    <tr class="list filterproductrow">
+                        <th scope="row" class="text-center">{{ forloop.counter }}</th>
+                        <td class="text-center">
+                            <b>Username : </b>{{p.username}} <br>
+                            <div>
+                                <b>{{p.product_name}}</b> <br>
+                            </div>
+                            <div class="filterproduct">
+                                {{p.category}} <br>
+                            </div>
+                            <b>Price : </b>₹ {{p.price}} <br>
+                        </td>
+                        <td class="text-center"><img src="{{p.img.url}}" alt="img.jpg" height="90" width="100"></td>
+                        <td class="text-center"><a href="{% url 'readmore' p.id %}"
+                                class="btn btn-outline-primary mt-4">Read More</a><br></td>
+                        <td class="text-center">
+                            <a href="{% url 'update' p.id %}" class="btn btn-primary btn-sm mt-4">Update</a>
+                            <form action="{% url 'delete' p.id %}" method="post" class="d-inline">{% csrf_token %}<input
+                                    type="submit" class="btn btn-danger btn-sm mt-4" value="Delete"><br><br></form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <h4 class="text-center alert alert-warning">No Data</h4>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+{% endblock content %}

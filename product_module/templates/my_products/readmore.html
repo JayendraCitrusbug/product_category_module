@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} {{readproduct.first.product_name}} {% endblock title %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h3 class="alert alert-info"><b>{{readproduct.first.product_name}} : </b>{{readproduct.first.category | title}}</h3>
+    </div>
+    <div class="mt-5">
+
+        <div class="text-center fs-3">
+            {% for p in readproduct %}
+
+            <img src="{{p.img.url}}" alt="img.jpg" height="300" width="300"><br><br>
+
+            <b>About : </b>{{p.description}} <br><br>
+            <b>Price : </b>{{p.price}} <br><br>
+            <a href="{% url 'checkout' p.id %}" class="btn btn-primary btn-lg">Buy Now</a>
+            <a href="{% url 'readmore' p.id %}" class="btn btn-secondary btn-lg">Read More</a>
+        </div>
+
+
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

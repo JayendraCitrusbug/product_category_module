@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} Category : {{cf.first.category}} {% endblock title %}
+
+{% block content %}
+{% load static %}
+
+<body style="background-color:ghostwhite; background-repeat: no-repeat; background-size: cover;">
+
+    <div class="container mt-5">
+        <div class="mt-5">
+            <h2 class="text-center alert alert-success">Products of Category : <b>{{cf.first.category}}</b></h2>
+            {% if cf %}
+            <table class="table table-hover">
+                <tbody>
+                    {% for p in cf %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>
+                            <b>User : </b>{{p.username}}<br>
+                        </td>
+                        <td>
+                            <b>{{p.product_name}}</b> <br>
+                            {{p.category}} <br>
+                            {{p.description}} <br>
+                            <b>Price : </b>{{p.price}} <br>
+                        </td>
+                        <td><img src="{{p.img.url}}" alt="img.jpg" height="110" width="120"></td>
+                        <td class="text-center"><a href="{% url 'readmore' p.id %}"
+                                class="btn btn-outline-primary mt-4">Read More</a><br></td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% else %}
+            <h4 class="text-center alert alert-warning">No Data</h4>
+            {% endif %}
+        </div>
+    </div>
+</body>
+{% endblock content %}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.css' %}">
+    <script defer src="{% static 'main/js/jquery.js' %}"></script>
+    <script defer src="{% static 'main/js/home.js' %}"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <div class="container-fluid">
+                <h3>Product Site</h3>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" id="myproducts" href="{% url 'myproducts' %}">My Products</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'add' %}">Add Products</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="">My orders</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Category
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                {% block mycategory %}
+                                {% for c in cat %}
+                                <li><a class="dropdown-item"
+                                    href="{% url 'catfilter' pk=c.pk %}">{{ c.category.title }}</a></li>
+                                    {% endfor %}
+                                {% endblock mycategory %}
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'profile' user.id %}">Hello, {{user.username}}</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                        {% block filter %}
+                        {% endblock filter %}
+                    </ul>
+
+                    <form class="d-flex" action="/search/">
+                        <input name="search" id="search" class="form-control me-2" type="search" placeholder="Search"
+                            autocomplete="off">
+                        <button class="btn btn-success" id="button" type="button">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    {% block content %} {% endblock content %}
+
+    <script src="{% static 'main/js/bootstrap.js' %}"></script>
+</body>
+
+</html>

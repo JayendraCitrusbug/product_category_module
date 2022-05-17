@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Category {% endblock title %}
+
+{% block content %}
+
+{% load static %}
+<body style="background-image: url(../../static/main/images/images/images-6.jpg); background-repeat: no-repeat; background-size: cover;">
+
+    <h2 class="container text-center alert alert-info mt-5">Add Category</h2>
+    <form class="container col-sm-4" method="post">
+        {% csrf_token %}
+        <div class="container">
+            <label class="form-label">New Category : </label>
+            <input type="text" class="form-control mb-3" name="category" required style="text-transform: capitalize;">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form><br>
+    <div>
+        {% for message in messages %}
+        <h3 class="container alert alert-danger text-center" style="width: 700px;"> {{message}} </h3>
+        {% endfor %}
+    </div>
+</body>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'base_customadmin.html' %}
+{% load static %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+<label for="">username : </label>
+{{form.username}} <br>
+<label for=""> product_name : </label>
+{{form.product_name}}<br>
+<label for="">category : </label>
+{{form.category}}<br>
+<label for="">image : </label>
+{{form.img}}<br>
+<label for="">decsc : </label>
+{{form.description}}<br>
+<label for="">price : </label>
+{{form.price}}<br>
+<input type="submit" value="Save">
+</form>
+
+{% endblock content %}

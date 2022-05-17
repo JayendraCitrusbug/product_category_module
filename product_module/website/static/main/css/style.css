@@ -1,0 +1,5 @@
+.navbar ul li:hover{
+    background-color: #adb5bd;
+    color: white;
+    border-radius: 10px;
+}

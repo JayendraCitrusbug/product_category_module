@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} Searched for : {{search}} {% endblock title %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h5 class="alert alert-info">Total Products : {{count_product}}</h5>
+    </div>
+    <div class="mt-5">
+        {% if result %}
+        <table class="table table-hover">
+            <tbody>
+                {% for p in result %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>
+                        <b>{{p.product_name}}</b> <br>
+                        {{p.category}} <br>
+                        <b>Price : </b>{{p.price}} <br>
+                    </td>
+                    <td><img src="{{p.img.url}}" alt="img.jpg" height="90" width="100"></td>
+                    <td class="text-center"><a href="{% url 'readmore' p.id %}" class="btn btn-outline-primary mt-4">Read More</a><br></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+        <h4 class="text-center alert alert-warning">No Data</h4>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
